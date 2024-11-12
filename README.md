@@ -3,8 +3,8 @@ RECOGNITION OF THE GRAMMAR(anb where n>=10) USING YACC
 
 # DATE: 17/10/2024
 
-## NAME : Muhammad Afshan .A
-## Register Number : 212223100035
+## NAME : NAVEEN KUMAR.R
+## Register Number : 212223230139
 
 # Aim:
 To write a YACC program to recognize the grammar anb where n>=10.
