@@ -1,14 +1,9 @@
 # Ex-5-RECOGNITION-OF-THE-GRAMMAR-anb-where-n-10-USING-YACC
 RECOGNITION OF THE GRAMMAR(anb where n>=10) USING YACC
-
-# DATE: 17/10/2024
-
-## NAME : NAVEEN KUMAR.R
-## Register Number : 212223230139
-
+# Date: 17.10.2024
+# NAME: NAVEEN KUMAR.R
 # Aim:
 To write a YACC program to recognize the grammar anb where n>=10.
-
 # ALGORITHM
 1.	Start the program.
 2.	Write a program in the vi editor and save it with .l extension.
@@ -18,70 +13,51 @@ To write a YACC program to recognize the grammar anb where n>=10.
 6.	Compile the yacc program with yacc compiler to produce output file as y.tab.c. eg $ yacc –d arith_id.y
 7.	Compile these with the C compiler as gcc lex.yy.c y.tab.c
 8.	Enter a string as input and it is identified as valid or invalid.
-
 # PROGRAM:
-
-### ex5.l
-```
-%{
+GRAMMAR.L:
+```%{
 #include "y.tab.h"
-#include <stdio.h>
 %}
 
-/* Rule Section */
 %%
-
-[aA] { return A; }
-[bB] { return B; }
-\n { return NL; }
-. { /* Ignore any other characters */ }
-
+a    { return A; } 
+b    { return B; }  
+.    { return 0; }
 %%
-
 
 int yywrap() {
     return 1;
 }
 ```
-
-### ex5.y
+GRAMMAR.Y:
 ```
 %{
 #include <stdio.h>
-#include <stdlib.h>
-
-void yyerror(char *s);
 int yylex(void);
+void yyerror(const char *s);
 %}
 
-%token A B NL
+%token A B
 
-%% 
+%%
+S   : A A A A A A A A A A B    { printf("Valid string\n"); }
+    | A S B                    { printf("Valid string\n"); }
+    ;
 
-stmt: S NL { printf("Valid string\n"); exit(0); }
-;
-
-S: A S B | /* Allow for empty production */
-  
-;
-
-%% 
-
-void yyerror(char *s) {
-    fprintf(stderr, "Invalid string\n");
-}
+%%
 
 int main() {
-    printf("Enter the string:");
+    printf("Enter a string:\n");
     yyparse();
     return 0;
 }
 
+void yyerror(const char *s) {
+    printf("Invalid string\n");
+}
 ```
-
-# OUTPUT
-
-![ex5](ex5(1).png)
+# OUTPUT:
+![379675016-5b9fae75-2e62-4afa-997e-38e31c45ddb1](https://github.com/user-attachments/assets/3fe63907-db9b-4f50-9213-09a3061669ec)
 
 # RESULT
 The YACC program to recognize the grammar anb where n>=10 is executed successfully and the output is verified.
